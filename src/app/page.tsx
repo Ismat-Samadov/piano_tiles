@@ -161,10 +161,8 @@ export default function Home() {
               Azərbaycanın kredit platforması
             </div>
             <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
-              Bir müraciətlə,{" "}
-              <span className="text-blue-600">çox bankdan</span>
-              <br />
-              kredit imkanı
+              Bütün banklara{" "}
+              <span className="text-blue-600">bir müraciət</span>
             </h1>
             <p className="mx-auto mt-4 max-w-md text-base text-slate-500">
               Hər bankın saytına ayrıca girməyin. Bir dəfə doldurun —
