@@ -5,7 +5,7 @@ import {
   loanApplications,
   applicationBanks,
 } from "./schema";
-import { eq, count, desc, and, sql, gte } from "drizzle-orm";
+import { eq, count, desc, and, sql, gte, lte, inArray } from "drizzle-orm";
 
 export async function getDashboardStats() {
   const [[totalApps], [activeBanks], [pendingApps], [approvedApps]] =
@@ -294,6 +294,53 @@ export async function getPlatformAnalytics() {
       pending: Number(r.pending),
     })),
   };
+}
+
+export type ExportStatus = "gozlemede" | "baxilir" | "tesdiq_edildi" | "red_edildi";
+
+export async function getApplicationsForExport(
+  bankId: string,
+  filters: {
+    statuses?: ExportStatus[];
+    dateFrom?: Date;
+    dateTo?: Date;
+  } = {}
+) {
+  const conditions = [eq(applicationBanks.bankId, bankId)];
+
+  if (filters.statuses && filters.statuses.length > 0) {
+    conditions.push(inArray(applicationBanks.status, filters.statuses));
+  }
+  if (filters.dateFrom) {
+    conditions.push(gte(loanApplications.createdAt, filters.dateFrom));
+  }
+  if (filters.dateTo) {
+    // include the full end day
+    const endOfDay = new Date(filters.dateTo);
+    endOfDay.setHours(23, 59, 59, 999);
+    conditions.push(lte(loanApplications.createdAt, endOfDay));
+  }
+
+  return db
+    .select({
+      id: loanApplications.id,
+      phoneNumber: loanApplications.phoneNumber,
+      finCode: loanApplications.finCode,
+      ipAddress: loanApplications.ipAddress,
+      deviceType: loanApplications.deviceType,
+      browser: loanApplications.browser,
+      os: loanApplications.os,
+      language: loanApplications.language,
+      referer: loanApplications.referer,
+      status: applicationBanks.status,
+      notes: applicationBanks.notes,
+      reviewedAt: applicationBanks.reviewedAt,
+      appliedAt: loanApplications.createdAt,
+    })
+    .from(applicationBanks)
+    .innerJoin(loanApplications, eq(applicationBanks.applicationId, loanApplications.id))
+    .where(and(...conditions))
+    .orderBy(desc(loanApplications.createdAt));
 }
 
 export async function getBankApplications(bankId: string, limit = 100) {
