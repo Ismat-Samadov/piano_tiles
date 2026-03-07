@@ -49,6 +49,12 @@ export async function getAllApplicationsWithBanks(limit = 100) {
       id: loanApplications.id,
       phoneNumber: loanApplications.phoneNumber,
       finCode: loanApplications.finCode,
+      ipAddress: loanApplications.ipAddress,
+      userAgent: loanApplications.userAgent,
+      deviceType: loanApplications.deviceType,
+      browser: loanApplications.browser,
+      os: loanApplications.os,
+      language: loanApplications.language,
       createdAt: loanApplications.createdAt,
     })
     .from(loanApplications)
@@ -86,6 +92,10 @@ export async function getAllBanks() {
       name: banks.name,
       slug: banks.slug,
       logoUrl: banks.logoUrl,
+      address: banks.address,
+      email: banks.email,
+      phoneNumber: banks.phoneNumber,
+      websiteUrl: banks.websiteUrl,
       isActive: banks.isActive,
       createdAt: banks.createdAt,
     })

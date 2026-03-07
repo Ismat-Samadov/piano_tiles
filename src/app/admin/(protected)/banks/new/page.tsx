@@ -56,15 +56,25 @@ export default function NewBankPage() {
             />
           </div>
 
+          <div>
+            <label className="mb-1.5 block text-sm font-medium text-slate-700">Ünvan</label>
+            <input name="address" className={INPUT} placeholder="AZ1000, Bakı şəhəri, ..." />
+          </div>
+
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="mb-1.5 block text-sm font-medium text-slate-700">Veb sayt</label>
-              <input name="websiteUrl" type="url" className={INPUT} placeholder="https://..." />
+              <label className="mb-1.5 block text-sm font-medium text-slate-700">E-poçt</label>
+              <input name="email" type="email" className={INPUT} placeholder="info@bank.az" />
             </div>
             <div>
               <label className="mb-1.5 block text-sm font-medium text-slate-700">Telefon</label>
-              <input name="phoneNumber" className={INPUT} placeholder="*1234" />
+              <input name="phoneNumber" className={INPUT} placeholder="(+994 12) 000-00-00" />
             </div>
+          </div>
+
+          <div>
+            <label className="mb-1.5 block text-sm font-medium text-slate-700">Veb sayt</label>
+            <input name="websiteUrl" type="url" className={INPUT} placeholder="https://..." />
           </div>
 
           <div>

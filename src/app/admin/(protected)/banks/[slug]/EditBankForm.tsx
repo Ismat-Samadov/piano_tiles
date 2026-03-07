@@ -40,20 +40,25 @@ export function EditBankForm({ bank }: { bank: Bank }) {
         />
       </div>
 
+      <div>
+        <label className="mb-1.5 block text-sm font-medium text-slate-700">Ünvan</label>
+        <input name="address" defaultValue={bank.address ?? ""} className={INPUT} placeholder="AZ1000, Bakı şəhəri, ..." />
+      </div>
+
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <label className="mb-1.5 block text-sm font-medium text-slate-700">Veb sayt</label>
-          <input
-            name="websiteUrl"
-            type="url"
-            defaultValue={bank.websiteUrl ?? ""}
-            className={INPUT}
-          />
+          <label className="mb-1.5 block text-sm font-medium text-slate-700">E-poçt</label>
+          <input name="email" type="email" defaultValue={bank.email ?? ""} className={INPUT} />
         </div>
         <div>
           <label className="mb-1.5 block text-sm font-medium text-slate-700">Telefon</label>
           <input name="phoneNumber" defaultValue={bank.phoneNumber ?? ""} className={INPUT} />
         </div>
+      </div>
+
+      <div>
+        <label className="mb-1.5 block text-sm font-medium text-slate-700">Veb sayt</label>
+        <input name="websiteUrl" type="url" defaultValue={bank.websiteUrl ?? ""} className={INPUT} />
       </div>
 
       <div>

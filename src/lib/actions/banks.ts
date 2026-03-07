@@ -25,6 +25,8 @@ export async function createBankAction(
     .toLowerCase()
     .replace(/\s+/g, "-");
   const description = (formData.get("description") as string).trim();
+  const address = (formData.get("address") as string).trim();
+  const email = (formData.get("email") as string).trim();
   const websiteUrl = (formData.get("websiteUrl") as string).trim();
   const phoneNumber = (formData.get("phoneNumber") as string).trim();
   const logoUrl = (formData.get("logoUrl") as string).trim();
@@ -36,6 +38,8 @@ export async function createBankAction(
       name,
       slug,
       description: description || null,
+      address: address || null,
+      email: email || null,
       websiteUrl: websiteUrl || null,
       phoneNumber: phoneNumber || null,
       logoUrl: logoUrl || null,
@@ -55,6 +59,8 @@ export async function updateBankAction(
 ): Promise<ActionState> {
   const name = (formData.get("name") as string).trim();
   const description = (formData.get("description") as string).trim();
+  const address = (formData.get("address") as string).trim();
+  const email = (formData.get("email") as string).trim();
   const websiteUrl = (formData.get("websiteUrl") as string).trim();
   const phoneNumber = (formData.get("phoneNumber") as string).trim();
   const logoUrl = (formData.get("logoUrl") as string).trim();
@@ -65,6 +71,8 @@ export async function updateBankAction(
     .set({
       name,
       description: description || null,
+      address: address || null,
+      email: email || null,
       websiteUrl: websiteUrl || null,
       phoneNumber: phoneNumber || null,
       logoUrl: logoUrl || null,

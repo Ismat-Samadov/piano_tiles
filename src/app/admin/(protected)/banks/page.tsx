@@ -28,7 +28,7 @@ export default async function BanksPage() {
           <thead>
             <tr className="border-b border-slate-100 bg-slate-50 text-left text-xs font-semibold uppercase tracking-wider text-slate-500">
               <th className="px-4 py-3">Bank</th>
-              <th className="px-4 py-3">Veb sayt</th>
+              <th className="px-4 py-3">Ünvan / Əlaqə</th>
               <th className="px-4 py-3">Status</th>
               <th className="px-4 py-3">Əlavə tarixi</th>
               <th className="px-4 py-3">Əməliyyatlar</th>
@@ -52,7 +52,12 @@ export default async function BanksPage() {
                     </div>
                   </div>
                 </td>
-                <td className="px-4 py-3 text-slate-500">{bank.logoUrl ? "–" : "–"}</td>
+                <td className="px-4 py-3">
+                  <div className="text-xs text-slate-500 max-w-[220px]">
+                    {bank.address && <div className="truncate">{bank.address}</div>}
+                    {bank.email && <div className="text-slate-400">{bank.email}</div>}
+                  </div>
+                </td>
                 <td className="px-4 py-3">
                   <form
                     action={async () => {

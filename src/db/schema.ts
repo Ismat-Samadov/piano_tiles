@@ -27,6 +27,8 @@ export const banks = kreditorSchema.table("banks", {
   logoUrl: text("logo_url"),
   description: text("description"),
   websiteUrl: text("website_url"),
+  email: varchar("email", { length: 255 }),
+  address: text("address"),
   phoneNumber: varchar("phone_number", { length: 30 }),
   isActive: boolean("is_active").default(true).notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
@@ -54,7 +56,19 @@ export const loanApplications = kreditorSchema.table("loan_applications", {
   phoneNumber: varchar("phone_number", { length: 20 }).notNull(),
   finCode: varchar("fin_code", { length: 20 }).notNull(), // FIN - Fərdi İdentifikasiya Nömrəsi
   fullName: varchar("full_name", { length: 255 }),
+  // Network
   ipAddress: varchar("ip_address", { length: 45 }),
+  // Device / browser fingerprint
+  userAgent: text("user_agent"),
+  deviceType: varchar("device_type", { length: 20 }), // desktop | mobile | tablet
+  browser: varchar("browser", { length: 60 }),
+  os: varchar("os", { length: 60 }),
+  // Geo (from IP, populated async if geo service added)
+  country: varchar("country", { length: 60 }),
+  city: varchar("city", { length: 60 }),
+  // Request metadata
+  referer: text("referer"),
+  language: varchar("language", { length: 20 }),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });

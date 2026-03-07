@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import InstallPWA from "@/components/InstallPWA";
+import { validatePhone, validateFin, formatPhone } from "@/lib/phone";
 
 type Step = "form" | "banks" | "success";
 type Bank = {
@@ -74,9 +75,14 @@ export default function Home() {
 
   const handleFormNext = async (e: React.FormEvent) => {
     e.preventDefault();
-    const digits = phone.replace(/\D/g, "");
-    if (digits.length < 9) return setError("Düzgün telefon nömrəsi daxil edin");
-    if (finCode.length !== 7) return setError("FİN kod 7 simvoldan ibarət olmalıdır");
+    if (!validatePhone(phone)) {
+      return setError(
+        "Telefon nömrəsi düzgün deyil. 50, 51, 55, 60, 70, 77, 99 və ya 10 ilə başlayan 9 rəqəmli nömrə daxil edin."
+      );
+    }
+    if (!validateFin(finCode)) {
+      return setError("FİN kod düzgün deyil. 7 simvol (hərf və rəqəm) daxil edin.");
+    }
     setError(null);
     setBanksLoading(true);
     try {
@@ -100,7 +106,7 @@ export default function Home() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          phoneNumber: `+994${phone.replace(/\D/g, "")}`,
+          phoneNumber: phone,
           finCode: finCode.toUpperCase(),
           bankIds: selectedBanks,
         }),
@@ -268,6 +274,14 @@ export default function Home() {
                       required
                     />
                   </div>
+                  {/* Live hint */}
+                  {phone.replace(/\D/g, "").length > 0 && (
+                    <p className={`mt-1 text-xs ${validatePhone(phone) ? "text-emerald-600" : "text-slate-400"}`}>
+                      {validatePhone(phone)
+                        ? `✓ ${formatPhone(validatePhone(phone)!)}`
+                        : "50, 51, 55, 60, 70, 77, 99 və ya 10 ilə başlayan 9 rəqəm"}
+                    </p>
+                  )}
                 </div>
 
                 {/* FIN */}
