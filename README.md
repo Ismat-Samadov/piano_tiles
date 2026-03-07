@@ -128,7 +128,11 @@ npm install
 
 ### 2. Environment variables
 
-Create `.env.local`:
+Copy `.env.example` to `.env.local` and fill in your values:
+
+```bash
+cp .env.example .env.local
+```
 
 ```env
 DATABASE_URL="postgresql://..."
@@ -240,3 +244,12 @@ src/
     InstallPWA.tsx                    # PWA install prompt
   middleware.ts                       # Edge auth guard
 ```
+
+---
+
+## License
+
+Copyright (c) 2025 Kreditor.az. All rights reserved.
+
+This is proprietary software. Copying, modifying, distributing, sublicensing, or selling
+any part of this codebase is strictly prohibited. See [LICENSE](./LICENSE) for full terms.

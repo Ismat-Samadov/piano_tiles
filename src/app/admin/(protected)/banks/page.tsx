@@ -53,9 +53,20 @@ export default async function BanksPage() {
                   </div>
                 </td>
                 <td className="px-4 py-3">
-                  <div className="text-xs text-slate-500 max-w-[220px]">
+                  <div className="text-xs text-slate-500 max-w-[240px] space-y-0.5">
                     {bank.address && <div className="truncate">{bank.address}</div>}
                     {bank.email && <div className="text-slate-400">{bank.email}</div>}
+                    {bank.phoneNumber && <div className="text-slate-400">{bank.phoneNumber}</div>}
+                    {bank.websiteUrl && (
+                      <a
+                        href={bank.websiteUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-400 hover:underline truncate block"
+                      >
+                        {bank.websiteUrl.replace(/^https?:\/\//, "")}
+                      </a>
+                    )}
                   </div>
                 </td>
                 <td className="px-4 py-3">

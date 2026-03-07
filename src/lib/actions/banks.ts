@@ -144,6 +144,8 @@ export async function updateBankSettingsAction(
   if (!session || session.role !== "bank_admin") return { error: "İcazəsiz" };
 
   const description = (formData.get("description") as string).trim();
+  const address = (formData.get("address") as string).trim();
+  const email = (formData.get("email") as string).trim();
   const websiteUrl = (formData.get("websiteUrl") as string).trim();
   const phoneNumber = (formData.get("phoneNumber") as string).trim();
   const logoUrl = (formData.get("logoUrl") as string).trim();
@@ -152,6 +154,8 @@ export async function updateBankSettingsAction(
     .update(banks)
     .set({
       description: description || null,
+      address: address || null,
+      email: email || null,
       websiteUrl: websiteUrl || null,
       phoneNumber: phoneNumber || null,
       logoUrl: logoUrl || null,
