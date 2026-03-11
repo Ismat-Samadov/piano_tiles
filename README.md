@@ -19,6 +19,28 @@ A centralized loan application platform for the Azerbaijan market. Customers fil
 
 ---
 
+## Screenshots
+
+### Customer Application Form
+![Apply Page](screens/apply%20page.png)
+
+### Admin Panel Login
+![Admin Login](screens/admin%20panel%20login%20page.png)
+
+### Super Admin Dashboard
+![Admin Dashboard](screens/admin%20dashboard.png)
+
+### Banks Management
+![Banks Page](screens/banks%20page.png)
+
+### Applicants List
+![Applicants List](screens/applicants%20list.png)
+
+### Analytics
+![Analytics Page](screens/analytics%20page.png)
+
+---
+
 ## Tech Stack
 
 | Layer | Technology |
